@@ -1,0 +1,36 @@
+[2022-10-09T18:02:31.060+0000] {taskinstance.py:1171} INFO - Dependencies all met for <TaskInstance: car_price_prediction.predict scheduled__2022-10-08T15:00:00+00:00 [queued]>
+[2022-10-09T18:02:31.077+0000] {taskinstance.py:1171} INFO - Dependencies all met for <TaskInstance: car_price_prediction.predict scheduled__2022-10-08T15:00:00+00:00 [queued]>
+[2022-10-09T18:02:31.079+0000] {taskinstance.py:1368} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-09T18:02:31.086+0000] {taskinstance.py:1369} INFO - Starting attempt 1 of 2
+[2022-10-09T18:02:31.086+0000] {taskinstance.py:1370} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-09T18:02:31.131+0000] {taskinstance.py:1389} INFO - Executing <Task(PythonOperator): predict> on 2022-10-08 15:00:00+00:00
+[2022-10-09T18:02:31.147+0000] {standard_task_runner.py:52} INFO - Started process 869 to run task
+[2022-10-09T18:02:31.155+0000] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'car_price_prediction', 'predict', 'scheduled__2022-10-08T15:00:00+00:00', '--job-id', '363', '--raw', '--subdir', 'DAGS_FOLDER/hw_dag.py', '--cfg-path', '/tmp/tmp2iyybf0g', '--error-file', '/tmp/tmpuz9l3zeh']
+[2022-10-09T18:02:31.182+0000] {standard_task_runner.py:80} INFO - Job 363: Subtask predict
+[2022-10-09T18:02:31.550+0000] {task_command.py:371} INFO - Running <TaskInstance: car_price_prediction.predict scheduled__2022-10-08T15:00:00+00:00 [running]> on host f44dc562fb9a
+[2022-10-09T18:02:31.791+0000] {taskinstance.py:1583} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=car_price_prediction
+AIRFLOW_CTX_TASK_ID=predict
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-08T15:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-08T15:00:00+00:00
+[2022-10-09T18:02:31.815+0000] {taskinstance.py:1902} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 171, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 189, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/airflow_hw/modules/predict.py", line 22, in predict
+    curr_model = dill.load(hfile)
+  File "/home/airflow/.local/lib/python3.7/site-packages/dill/_dill.py", line 270, in load
+    return Unpickler(file, ignore=ignore, **kwds).load()
+  File "/home/airflow/.local/lib/python3.7/site-packages/dill/_dill.py", line 472, in load
+    obj = StockUnpickler.load(self)
+EOFError: Ran out of input
+[2022-10-09T18:02:31.837+0000] {taskinstance.py:1412} INFO - Marking task as UP_FOR_RETRY. dag_id=car_price_prediction, task_id=predict, execution_date=20221008T150000, start_date=20221009T180231, end_date=20221009T180231
+[2022-10-09T18:02:31.866+0000] {standard_task_runner.py:97} ERROR - Failed to execute job 363 for task predict (Ran out of input; 869)
+[2022-10-09T18:02:31.889+0000] {local_task_job.py:156} INFO - Task exited with return code 1
+[2022-10-09T18:02:31.953+0000] {local_task_job.py:279} INFO - 0 downstream tasks scheduled from follow-on schedule check
